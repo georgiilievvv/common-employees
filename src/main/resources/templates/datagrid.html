@@ -28,11 +28,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="employee: ${employeeWorkingPairs}">
-            <td th:text="${employee.firstEmployeeId}" />
-            <td th:text="${employee.secondEmployeeId}" />
-            <td th:text="${employee.projectId}" />
-            <td th:text="${employee.daysWorkingTogether}" />
+        <tr th:each="employee: ${colleaguesViews}">
+            <td th:text="${employee.firstEmployeeId}"/>
+            <td th:text="${employee.secondEmployeeId}"/>
+            <td th:text="${employee.projectId}"/>
+            <td th:text="${employee.daysWorkingTogether}"/>
         </tr>
         </tbody>
 

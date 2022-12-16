@@ -7,7 +7,7 @@ import java.util.List;
 
 
 /**
- * View model used for the datagrid.
+ * Interface for converting file content to model class representations.
  */
 public interface FileObjectMapper<T> {
 

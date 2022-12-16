@@ -6,14 +6,11 @@ import lombok.extern.slf4j.Slf4j;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Util validation class for employee data.
+ */
 @Slf4j
 public class EmployeeValidationUtil {
-
-    public static void validateDateRange(LocalDate startDate, LocalDate endDate) {
-        if (startDate.isAfter(endDate)) {
-            throw new IllegalStateException("start date is after end date");
-        }
-    }
 
     public static void validateEmployeeHasNoOverlappingProjectPeriods(List<Employee> validEmployees, Employee newEmployee) {
         validEmployees.stream()

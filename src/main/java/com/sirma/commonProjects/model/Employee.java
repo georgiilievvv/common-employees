@@ -23,6 +23,6 @@ public class Employee {
     private LocalDate endDate;
 
     public long getDaysWorked() {
-        return ChronoUnit.DAYS.between(startDate, endDate);
+        return ChronoUnit.DAYS.between(startDate, endDate)+1;
     }
 }

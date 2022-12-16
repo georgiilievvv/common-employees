@@ -14,47 +14,50 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Implementation class for {@link FileObjectMapper} using CSV files
+ * and mapping each row to the {@link Employee} class.
+ */
 @Slf4j
 @Service
-public class CsvFileEmployeeMapper implements FileObjectMapper<Employee> {
-    private static final String INCORRECT_DATA_PROVIDED_ERROR_MESSAGE = "Incorrect data provided. %s";
+public class CsvFileEmployeeMapperImpl implements FileObjectMapper<Employee> {
 
     @Override
     public List<Employee> convertFileContentToModel(MultipartFile file, String dateTimeFormatter) throws IOException {
+
+        log.info("action=convertFileContentToModel fileContentType={} dateTimeFormatter={}",
+                file.getContentType(), dateTimeFormatter);
+
         // parse CSV file to create a list of model objects
         Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()));
         List<CSVRecord> records = new CSVParser(reader, CSVFormat.DEFAULT.withTrim()).getRecords();
 
         List<Employee> employees = new ArrayList<>();
 
-        try {
-            records.forEach(csvRecord -> {
-                long employeeId = Long.parseLong(csvRecord.get(0));
-                long projectId = Long.parseLong(csvRecord.get(1));
-                LocalDate startDate = DateUtil.parseDateFromString(csvRecord.get(2), dateTimeFormatter);
-                LocalDate endDate = DateUtil.parseDateFromString(csvRecord.get(3), dateTimeFormatter);
+        records.forEach(csvRecord -> {
+            long employeeId = Long.parseLong(csvRecord.get(0));
+            long projectId = Long.parseLong(csvRecord.get(1));
+            LocalDate startDate = DateUtil.parseDateFromString(csvRecord.get(2), dateTimeFormatter);
+            LocalDate endDate = DateUtil.parseDateFromString(csvRecord.get(3), dateTimeFormatter);
 
-                EmployeeValidationUtil.validateDateRange(startDate, endDate);
+            DateUtil.validateDateRange(startDate, endDate);
 
-                Employee newEmployee = new Employee(
-                        employeeId,
-                        projectId,
-                        startDate,
-                        endDate);
+            Employee newEmployee = new Employee(
+                    employeeId,
+                    projectId,
+                    startDate,
+                    endDate);
 
-                EmployeeValidationUtil.validateEmployeeHasNoOverlappingProjectPeriods(employees, newEmployee);
+            EmployeeValidationUtil.validateEmployeeHasNoOverlappingProjectPeriods(employees, newEmployee);
 
-                employees.add(newEmployee);
-            });
-        } catch (NumberFormatException | DateTimeParseException e) {
-            throw new NumberFormatException(String.format(INCORRECT_DATA_PROVIDED_ERROR_MESSAGE, e.getMessage()));
-        }
+            employees.add(newEmployee);
+        });
 
         log.info("action=convertFileContentToModel result=success employees={}", employees.size());
         return employees;

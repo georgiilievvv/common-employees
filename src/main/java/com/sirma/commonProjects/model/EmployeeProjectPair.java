@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+/**
+ * Grouping class for employees and projects.
+ */
 @AllArgsConstructor
 @Getter
 @EqualsAndHashCode
