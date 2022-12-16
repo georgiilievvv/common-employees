@@ -1,6 +1,6 @@
 # Georgi-Iliev-employees
 
-Spring Boot application for aggregating input data provided by a CSV file and displaying the result with Thymeleaf and Bootstrap in a DataGrid.
+Java application Spring Boot application for aggregating input data provided by a CSV file and display the result with Thymeleaf and Bootstrap in a DataGrid.
 
 ### Start the project:
  - build the project using Maven - `mvn clean install`
@@ -11,8 +11,8 @@ OR
  - execute the command `mvn spring-boot:run`
 
 ### Endpoints
- - `/` - upload the input file and date format pattern
- - `/datagrid` - DataGrid of the aggregated data (will be empty in accessed right away)
+ - GET `/` - upload the input file and date format pattern
+ - POST `/datagrid` - DataGrid of the aggregated data
 
 ### Input parameters
 

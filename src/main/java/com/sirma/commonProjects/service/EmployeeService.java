@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @Service
-@RequiredArgsConstructor
 public class EmployeeService {
 
     public static List<ColleaguesView> extractEmployeesWorkingOnSameProject(List<Employee> employees) {
