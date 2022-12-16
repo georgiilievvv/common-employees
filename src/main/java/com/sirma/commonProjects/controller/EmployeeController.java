@@ -44,7 +44,7 @@ public class EmployeeController {
         List<Employee> employees = fileObjectMapper.convertFileContentToModel(file, dateFormat);
         List<ColleaguesView> colleaguesViews = EmployeeService.extractEmployeesWorkingOnSameProject(employees);
 
-        model.addAttribute("employeeWorkingPairs", colleaguesViews);
+        model.addAttribute("colleaguesViews", colleaguesViews);
          return "datagrid";
     }
 

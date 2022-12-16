@@ -14,7 +14,7 @@
 
 <div class="container">
     <br/>
-    <h3>List Employees</h3>
+    <h3>List Of Colleagues Who Worked On TheSame Project</h3>
     <br/>
     <br/>
     <table class="table table-bordered table-striped" id="employeeTable">
@@ -23,16 +23,16 @@
         <tr>
             <th>Employee ID #1</th>
             <th>Employee ID #2</th>
-            <th>Project ID,</th>
+            <th>Project ID</th>
             <th>Days worked</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="employee: ${colleaguesViews}">
-            <td th:text="${employee.firstEmployeeId}"/>
-            <td th:text="${employee.secondEmployeeId}"/>
-            <td th:text="${employee.projectId}"/>
-            <td th:text="${employee.daysWorkingTogether}"/>
+        <tr th:each="colleaguesView: ${colleaguesViews}">
+            <td th:text="${colleaguesView.firstEmployeeId}"/>
+            <td th:text="${colleaguesView.secondEmployeeId}"/>
+            <td th:text="${colleaguesView.projectId}"/>
+            <td th:text="${colleaguesView.daysWorkingTogether}"/>
         </tr>
         </tbody>
 

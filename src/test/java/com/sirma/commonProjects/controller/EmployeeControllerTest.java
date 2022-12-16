@@ -166,8 +166,8 @@ class EmployeeControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("datagrid"))
-                .andExpect(model().attribute("employeeWorkingPairs", Collections.singletonList(colleaguesView)))
-                .andExpect(model().attribute("employeeWorkingPairs", Matchers.hasSize(1)));
+                .andExpect(model().attribute("colleaguesViews", Collections.singletonList(colleaguesView)))
+                .andExpect(model().attribute("colleaguesViews", Matchers.hasSize(1)));
     }
 
 
