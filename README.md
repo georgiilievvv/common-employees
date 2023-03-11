@@ -1,4 +1,4 @@
-# Georgi-Iliev-employees
+# Common Employees
 
 Spring Boot application for aggregating input data provided by a CSV file and display the result with Thymeleaf and Bootstrap in a DataGrid.
 
